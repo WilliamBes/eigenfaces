@@ -21,6 +21,6 @@ class DisplayEigenfacesView:
         self.frame = LabelFrame(window)
         self.frame.pack()
 
-        self.label = Label(self.frame, text="Quelques images aléatoires du dataset", font=("Arial", 15))
+        self.label = Label(self.frame, text="Pourcentage d'images utilisées pour générer les eigenfaces: 90%", font=("Arial", 15))
         self.label.pack()
 

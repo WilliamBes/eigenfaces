@@ -29,11 +29,6 @@ class DisplayDatasetController():
 
     def plot_images(self):
         """Méthode affichant sur la page différente images aléatoirement tirées dans le dataset
-
-        Parameters:
-            faces: faces du dataset
-            m: taille x des images
-            n: taille y des images
         """
 
         faces = self.maincontroller.faces

@@ -8,6 +8,7 @@ import scipy.io
 
 from MenuView import MenuView
 from eigenfaces.app.DisplayDatasetController import DisplayDatasetController
+from eigenfaces.app.DisplayEigenfacesController import DisplayEigenfacesController
 
 
 class MainController():
@@ -24,6 +25,8 @@ class MainController():
         self.nfaces = None
         self.window = tk.Tk()
         self.dataset = None
+        self.eigenvectors = None
+        self.mean_training_face = None
 
 
         # liste des interfaces
@@ -40,6 +43,7 @@ class MainController():
 
         self.menu_view.butt_import.config(command=self.change_dataset)
         self.menu_view.butt_visualisation_dataset.config(command=self.display_dataset_images)
+        self.menu_view.butt_visualisation_eigenfaces.config(command=self.display_eigenfaces)
 
     def change_dataset(self):
         """
@@ -73,6 +77,17 @@ class MainController():
             display_dataset_controller = DisplayDatasetController(self)
             display_dataset_controller.plot_images()
 
-DisplayDatasetView.py
+    def display_eigenfaces(self):
+        """
+        Fonction qui affiche sur une frame les eigenfaces du dataset
+        Returns:
+
+        """
+
+        if self.faces is None or self.m is None or self.n is None:
+            showerror(title="Erreur", message="Problème avec le dataset ou bien dataset non importé")
+        else:
+            display_eigenfaces_controller = DisplayEigenfacesController(self)
+            display_eigenfaces_controller.plot_eigenfaces()
 
 

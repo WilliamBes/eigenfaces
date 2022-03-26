@@ -39,9 +39,10 @@ class MenuView:
                                   fg='black')
         self.butt_import.pack()
 
-        self.butt_import = Button(self.frame_droite_haut, text="Importer datasert (.mat)", font=("Arial", 14), bg='white',
-                                  fg='black')
-        self.butt_import.pack()
+        self.butt_visualisation_dataset = Button(self.frame_droite_haut, text="Visualisation du dataset",
+                                                    font=("Arial", 14), bg='white',
+                                                    fg='black')
+        self.butt_visualisation_dataset.pack(side=LEFT, padx=5)
 
         self.butt_visualisation_eigenfaces = Button(self.frame_droite_bas, text="Visualisation des eigenfaces", font=("Arial", 14), bg='white',
                                   fg='black')

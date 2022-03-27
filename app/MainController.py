@@ -27,7 +27,7 @@ class MainController():
         self.dataset = None
         self.eigenvectors = None
         self.mean_training_face = None
-
+        self.singular_values = None
 
         # liste des interfaces
         self.menu_view = MenuView(self.window)

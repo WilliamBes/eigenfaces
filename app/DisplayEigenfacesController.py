@@ -1,3 +1,4 @@
+import math
 import random
 import tkinter as tk
 
@@ -19,10 +20,19 @@ class DisplayEigenfacesController():
         """Constructeur de la classe DisplayDatasetController"""
         self.window = tk.Tk()
         self.maincontroller = maincontroller
-        self.view = DisplayEigenfacesView(self.window)
+        self.computed = False
         self.train_purcentage = 0.9
         self.test_purcentage = 1 - self.train_purcentage
         self.nb_train_faces = None
+
+        if not self.computed:
+            self.eigenvectors, self.singulars_values = self.compute_eigenvectors()
+        else:
+            self.eigenvectors = self.maincontroller.eigenvectors
+            self.singulars_values = self.maincontroller.singular_values
+
+        self.view = DisplayEigenfacesView(self.window)
+
 
         self.configure_action_buttons()
 
@@ -30,29 +40,33 @@ class DisplayEigenfacesController():
         """fonction qui configure les actions des boutons de la page DisplayEigenfacesController"""
         pass
 
-    def plot_eigenfaces(self, computed=False):
+    def plot_eigenfaces(self):
         """Méthode affichant sur la page les eigenfaces du dataset
         """
-
-        if not computed:
-            eigenvectors = self.compute_eigenvectors()
-        else:
-            eigenvectors = self.maincontroller.eigenvectors
 
         m = self.maincontroller.m
         n = self.maincontroller.n
 
-        nb_subplot = len(eigenvectors) if len(eigenvectors) <= 16 else 16
-        self.fig, self.axs = plt.subplots(nb_subplot)
+        nb_subplot = self.eigenvectors.shape[1] if self.eigenvectors.shape[1] <= 16 else 16
+
+        # On divise le graph en sous graph contenant nb_subplot
+        self.fig, self.axs = plt.subplots(int(math.sqrt(nb_subplot)), int(math.sqrt(nb_subplot)))
         self.fig.set_dpi(200)
         canvas = FigureCanvasTkAgg(self.fig, self.view.frame)
         canvas.get_tk_widget().pack()
 
+        # Affichage
         for i in range(0, nb_subplot):
-            img_1 = self.axs[i].imshow(np.reshape(eigenvectors[:, i], (m, n)).T)
+            img_1 = self.axs[int(i/int(math.sqrt(nb_subplot))), i % int(math.sqrt(nb_subplot))]\
+                         .imshow(np.reshape(self.eigenvectors[:, i], (m, n)).T)
             img_1.set_cmap('gray')
-            self.axs[i].axis('off')
+            self.axs[int(i / int(math.sqrt(nb_subplot))), i % int(math.sqrt(nb_subplot))]\
+                .set_title("n°{} | Singular value:{}".format(i+1, round(self.singulars_values[i], 1)), fontsize=5)
+            self.axs[int(i/int(math.sqrt(nb_subplot))), i % int(math.sqrt(nb_subplot))]\
+                .axis('off')
 
+        nb_faces_str = "(Soit {} personnes sur {})".format(self.nb_train_faces, len(self.maincontroller.nfaces))
+        plt.suptitle(nb_faces_str, fontsize=10)
         plt.show()
 
     def compute_eigenvectors(self):
@@ -74,5 +88,6 @@ class DisplayEigenfacesController():
         U, S, VT = np.linalg.svd(X, full_matrices=False)
 
         self.maincontroller.eigenvectors = U
+        self.maincontroller.singular_values = S
 
-        return U
+        return U, S

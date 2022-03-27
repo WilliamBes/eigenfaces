@@ -36,7 +36,6 @@ class DisplayDatasetController():
         n = self.maincontroller.n
         random_numbers = random.sample(range(0, faces.shape[1]), 9)
 
-
         self.fig.set_dpi(200)
         canvas = FigureCanvasTkAgg(self.fig, self.view.frame)
         canvas.get_tk_widget().pack()

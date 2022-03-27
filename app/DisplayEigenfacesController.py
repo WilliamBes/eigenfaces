@@ -18,12 +18,14 @@ class DisplayEigenfacesController():
 
     def __init__(self, maincontroller):
         """Constructeur de la classe DisplayDatasetController"""
+
         self.window = tk.Tk()
         self.maincontroller = maincontroller
         self.computed = False
         self.train_purcentage = 0.9
         self.test_purcentage = 1 - self.train_purcentage
         self.nb_train_faces = None
+        self.fig, self.axs = None, None
 
         if not self.computed:
             self.eigenvectors, self.singulars_values = self.compute_eigenvectors()
@@ -32,7 +34,6 @@ class DisplayEigenfacesController():
             self.singulars_values = self.maincontroller.singular_values
 
         self.view = DisplayEigenfacesView(self.window)
-
 
         self.configure_action_buttons()
 

@@ -54,6 +54,7 @@ class MainController():
             self.dataset = scipy.io.loadmat(os.path.join('..','datas','allFaces.mat'))
         except:
             showerror(title='Erreur', message="Le fichier n'est pas du bon format")
+            return
 
         # Changer tous les attributs relatifs au dataset
         try:
@@ -64,6 +65,16 @@ class MainController():
         except KeyError:
             showerror(title='Erreur', message="Le fichier .mat ne contient pas tous les champs requis:\n"
                                               "faces/m/n/nfaces")
+            return
+
+        label_nb_images_var_str = "Nombre d'images : {}".format(self.faces.shape[1])
+        self.menu_view.label_nb_images_var.set(label_nb_images_var_str)
+        label_definition_var_str = "Définition des images : {} x {}".format(self.m, self.n)
+        self.menu_view.label_definition_var.set(label_definition_var_str)
+        label_import_var_str = "Dataset importé : Oui"
+        self.menu_view.label_import_var.set(label_import_var_str)
+        label_nb_persones_var_str = "Nombre de personnes : {}".format(len(self.nfaces))
+        self.menu_view.label_nb_persones_var.set(label_nb_persones_var_str)
 
     def display_dataset_images(self):
         """

@@ -1,12 +1,12 @@
 from tkinter import Frame, BOTH, YES, LEFT, RIGHT, TOP, BOTTOM, Button, LabelFrame, Label, Entry, StringVar
 
-
 class DisplayEigenfacesView:
+    """Classe DisplayEigenfacesView"""
 
 
     def __init__(self, window):
         """
-
+        Constructeur de la classe DisplayEigenfacesView
         :param window:
         """
 
@@ -23,4 +23,3 @@ class DisplayEigenfacesView:
 
         self.label = Label(self.frame, text="Pourcentage d'images utilisées pour générer les eigenfaces: 90%", font=("Arial", 15))
         self.label.pack()
-

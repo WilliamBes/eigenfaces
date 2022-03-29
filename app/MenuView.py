@@ -14,7 +14,7 @@ class MenuView:
         window.title("Eigenfaces")
 
         # taille fenetre
-        window.geometry("1080x720")
+        window.geometry("1080x480")
         # taille min
         window.minsize(480, 360)
 
@@ -28,16 +28,16 @@ class MenuView:
         self.frame_droite.pack(side=RIGHT)
 
         self.frame_droite_haut = LabelFrame(self.frame_droite)
-        self.frame_droite_haut.pack(side=TOP)
+        self.frame_droite_haut.pack(side=TOP,  pady=20)
 
         self.frame_droite_bas = LabelFrame(self.frame_droite)
-        self.frame_droite_bas.pack(side=BOTTOM,  pady=150)
+        self.frame_droite_bas.pack(side=BOTTOM,  pady=100)
 
         # Boutons
 
         self.butt_import = Button(self.frame_gauche, text="Importer dataset (.mat)", font=("Arial", 14), bg='white',
                                   fg='black')
-        self.butt_import.pack()
+        self.butt_import.pack(padx=15, pady=15)
 
         self.label_definition_var = StringVar()
         self.label_definition = Label(self.frame_gauche, textvariable=self.label_definition_var)
@@ -59,28 +59,23 @@ class MenuView:
         self.label_import = Label(self.frame_gauche, textvariable=self.label_import_var)
         self.label_import.pack(side=BOTTOM)
 
-
         self.butt_visualisation_dataset = Button(self.frame_droite_haut, text="Visualisation du dataset",
                                                     font=("Arial", 14), bg='white',
                                                     fg='black')
-        self.butt_visualisation_dataset.pack(side=LEFT, padx=5)
+        self.butt_visualisation_dataset.pack(side=LEFT, padx=15, pady=15)
 
         self.butt_visualisation_eigenfaces = Button(self.frame_droite_bas, text="Visualisation des eigenfaces", font=("Arial", 14), bg='white',
                                   fg='black')
-        self.butt_visualisation_eigenfaces.pack(padx=5)
+        self.butt_visualisation_eigenfaces.pack(padx=10)
 
         self.frame_reco = Frame(self.frame_droite_bas)
         self.frame_reco.pack(side=BOTTOM)
         self.butt_reco_image = Button(self.frame_reco, text="Reconstitution d'une image", font=("Arial", 14), bg='white',
                                   fg='black')
-        self.butt_reco_image.pack(side=LEFT, padx=5)
+        self.butt_reco_image.pack(side=LEFT, padx=10)
 
         self.label_reco_image_var = StringVar()
         self.label_reco_image = Label(self.frame_reco, textvariable=self.label_reco_image_var)
         self.label_reco_image.pack(side=LEFT)
         self.entry_reco_image = Entry(self.frame_reco)
         self.entry_reco_image.pack(side=RIGHT)
-
-        self.butt_script_match = Button(self.frame_droite_bas, text="Script pour match", font=("Arial", 14), bg='white',
-                                  fg='black')
-        self.butt_script_match.pack(padx=5)

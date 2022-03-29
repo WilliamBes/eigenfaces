@@ -1,10 +1,8 @@
-import os
 import tkinter as tk
+from tkinter.filedialog import askopenfilename
 from tkinter.messagebox import showerror
-
 import numpy as np
 import scipy.io
-
 
 from MenuView import MenuView
 from eigenfaces.app.DisplayDatasetController import DisplayDatasetController
@@ -64,7 +62,8 @@ class MainController():
         :return:
         """
         try:
-            self.dataset = scipy.io.loadmat(os.path.join('..','datas','allFaces.mat'))
+            filename = askopenfilename()
+            self.dataset = scipy.io.loadmat(filename)
         except:
             showerror(title='Erreur', message="Le fichier n'est pas du bon format")
             return

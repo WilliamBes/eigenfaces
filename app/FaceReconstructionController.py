@@ -1,12 +1,9 @@
 import math
-import random
 import tkinter as tk
 
 import numpy as np
 from matplotlib import pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
-from eigenfaces.app.DisplayDatasetView import DisplayDatasetView
 from eigenfaces.app.FaceReconstructionView import FaceReconstructionView
 
 

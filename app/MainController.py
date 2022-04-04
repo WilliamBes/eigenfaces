@@ -150,7 +150,7 @@ class MainController():
 
     def compute_eigenvectors(self):
         """
-        Fonction calculant les eigenvectors ainsi que le visage moyen du dataset.
+        Fonction calculant les eigenvectors
         """
 
         # utilisation du svd pour la détermination des eigenvectors
